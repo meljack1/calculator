@@ -49,6 +49,7 @@ function addNumber(number) {
         document.getElementById("display").textContent = "";
         calculator.isSum = false;
         calculator.decimal = false;
+        calculator.no1 = "";
     }
     if (calculator.operator) {
         calculator.no2 += number;
@@ -189,12 +190,20 @@ undoButton.addEventListener('click', () => {
  
 const equalsButton = document.querySelector('#equals'); 
 equalsButton.addEventListener('click', () => {
-    const sum = operate(calculator.no1, calculator.no2, calculator.operator);
-    document.getElementById("display").textContent = Number((sum).toFixed(3));
-    calculator.no1 = sum.toString();
-    calculator.no2 = "";
-    calculator.operator = null;
-    calculator.isSum = true;
+    if (calculator.no2 == "0" && calculator.operator == "divide") {
+        alert("You will pay gravely for your transgressions.");
+        calculator.no1 = "";
+        calculator.no2 = "";
+        calculator.operator = null;
+        document.getElementById("display").textContent = "";
+    } else {
+        const sum = operate(calculator.no1, calculator.no2, calculator.operator); 
+        document.getElementById("display").textContent = Number((sum).toFixed(3));
+        calculator.no1 = sum.toString();
+        calculator.no2 = "";
+        calculator.operator = null;
+        calculator.isSum = true;
+    }
 });
 
  
