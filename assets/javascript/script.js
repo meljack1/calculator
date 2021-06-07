@@ -171,11 +171,26 @@ clearButton.addEventListener('click', () => {
     calculator.isSum = false;
     calculator.decimal = false;
 });
+
+const undoButton = document.querySelector('#undo');
+undoButton.addEventListener('click', () => {
+    const string = document.getElementById("display").textContent;
+    document.getElementById("display").textContent = string.substring(0, string.length-1);
+    if (calculator.no2 != "") {
+        const num2 = calculator.no2;
+        calculator.no2 = num2.substring(0, num2.length - 1);
+    } else if (calculator.operator != null) {
+        calculator.operator = null;
+    } else if (calculator.no1 != "") {
+        const num1 = calculator.no1;
+        calculator.no1 = num1.substring(0, num1.length - 1);
+    }
+})
  
 const equalsButton = document.querySelector('#equals'); 
 equalsButton.addEventListener('click', () => {
     const sum = operate(calculator.no1, calculator.no2, calculator.operator);
-    document.getElementById("display").textContent = sum;
+    document.getElementById("display").textContent = Number((sum).toFixed(3));
     calculator.no1 = sum.toString();
     calculator.no2 = "";
     calculator.operator = null;
