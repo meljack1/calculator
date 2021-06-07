@@ -190,7 +190,7 @@ undoButton.addEventListener('click', () => {
  
 const equalsButton = document.querySelector('#equals'); 
 equalsButton.addEventListener('click', () => {
-    if (calculator.no2 == "0" && calculator.operator == "divide") {
+    if (calculator.no2 * 10 == 0 && calculator.operator == "divide") {
         alert("You will pay gravely for your transgressions.");
         calculator.no1 = "";
         calculator.no2 = "";
