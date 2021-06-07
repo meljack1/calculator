@@ -11,7 +11,8 @@ body {
 #calculator {
     background-color: #881600;
     width: 450px;
-    height: 600px;
+    min-height: 600px;
+    height: auto;
     margin: 50px auto;
     padding: 50px;
     border-radius: 100px;
@@ -22,16 +23,23 @@ body {
 #screen {
     background-color: white;
     width: 360px;
-    height: 150px;
+    min-height: 150px;
+    height: auto;
     font-size: 52px;
+    line-height: 52px;
+    word-wrap: break-word;
     text-align: right;
     margin: auto;
     border: solid #4E0110 2px;
     box-shadow: 0px 0px 5px #4E0110;
-    padding: 10px 40px;
+    padding: 0px 40px;
     border-radius: 50px;
 }
 
+#display {
+    padding: 0px;
+    margin: 25px 0px;
+}
 
 #clearButtons {
     display: grid;

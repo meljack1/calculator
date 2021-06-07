@@ -45,7 +45,7 @@ const calculator = {
 }; 
 
 function addNumber(number) {
-    if (calculator.isSum && calculator.no2 != 0) {
+    if (calculator.isSum && calculator.operator == null) {
         document.getElementById("display").textContent = "";
         calculator.isSum = false;
         calculator.decimal = false;
@@ -119,30 +119,38 @@ zero.addEventListener('click', () => {
 
 const addButton = document.querySelector('#add');
 addButton.addEventListener('click', () => {
-    calculator.operator = "add";
-    calculator.decimal = false;
-    document.getElementById("display").textContent += "+";
+    if (calculator.operator == null) {
+        calculator.operator = "add";
+        calculator.decimal = false;
+        document.getElementById("display").textContent += "+";
+    }
 });
 
 const multiplyButton = document.querySelector('#multiply');
 multiplyButton.addEventListener('click', () => {
-    calculator.operator = "multiply";
-    calculator.decimal = false;
-    document.getElementById("display").textContent += "×";
+    if (calculator.operator == null) {
+        calculator.operator = "multiply";
+        calculator.decimal = false;
+        document.getElementById("display").textContent += "×";
+    }
 });
 
 const divideButton = document.querySelector('#divide');
 divideButton.addEventListener('click', () => {
-    calculator.operator = "divide";
-    calculator.decimal = false;
-    document.getElementById("display").textContent += "÷";
+    if (calculator.operator == null) {
+        calculator.operator = "divide";
+        calculator.decimal = false;
+        document.getElementById("display").textContent += "÷";
+    }
 });
 
 const minusButton = document.querySelector('#minus');
 minusButton.addEventListener('click', () => {
-    calculator.operator = "subtract";
-    calculator.decimal = false;
-    document.getElementById("display").textContent += "-";
+    if (calculator.operator == null) {
+        calculator.operator = "subtract";
+        calculator.decimal = false;
+        document.getElementById("display").textContent += "-";
+    }
 });
 
 const decimalButton = document.querySelector('#decimal');
