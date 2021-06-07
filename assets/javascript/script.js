@@ -30,6 +30,9 @@ function operate(no1, no2, operator) {
         case "divide":
             return divide(a, b);
             break;
+        case null: 
+            return a;
+            break;
     }
 }
 
@@ -37,13 +40,15 @@ const calculator = {
     no1: "",
     no2: "",
     operator: null,
-    isSum: false
+    isSum: false,
+    decimal: false
 }; 
 
 function addNumber(number) {
-    if (calculator.isSum) {
+    if (calculator.isSum && calculator.no2 != 0) {
         document.getElementById("display").textContent = "";
         calculator.isSum = false;
+        calculator.decimal = false;
     }
     if (calculator.operator) {
         calculator.no2 += number;
@@ -115,37 +120,55 @@ zero.addEventListener('click', () => {
 const addButton = document.querySelector('#add');
 addButton.addEventListener('click', () => {
     calculator.operator = "add";
+    calculator.decimal = false;
     document.getElementById("display").textContent += "+";
 });
 
 const multiplyButton = document.querySelector('#multiply');
 multiplyButton.addEventListener('click', () => {
     calculator.operator = "multiply";
+    calculator.decimal = false;
     document.getElementById("display").textContent += "×";
 });
 
 const divideButton = document.querySelector('#divide');
 divideButton.addEventListener('click', () => {
     calculator.operator = "divide";
+    calculator.decimal = false;
     document.getElementById("display").textContent += "÷";
 });
 
 const minusButton = document.querySelector('#minus');
 minusButton.addEventListener('click', () => {
     calculator.operator = "subtract";
+    calculator.decimal = false;
     document.getElementById("display").textContent += "-";
+});
+
+const decimalButton = document.querySelector('#decimal');
+decimalButton.addEventListener('click', () => {
+    if (calculator.decimal == false) {
+        calculator.decimal = "true";
+        document.getElementById("display").textContent += ".";
+        addNumber(".");
+    }
 });
 
 const clearButton = document.querySelector('#clear');
 clearButton.addEventListener('click', () => {
     document.getElementById("display").textContent = "";
+    calculator.no1 = "";
+    calculator.no2 = "";
+    calculator.operator = null;
+    calculator.isSum = false;
+    calculator.decimal = false;
 });
  
 const equalsButton = document.querySelector('#equals'); 
 equalsButton.addEventListener('click', () => {
     const sum = operate(calculator.no1, calculator.no2, calculator.operator);
     document.getElementById("display").textContent = sum;
-    calculator.no1 = "";
+    calculator.no1 = sum.toString();
     calculator.no2 = "";
     calculator.operator = null;
     calculator.isSum = true;
